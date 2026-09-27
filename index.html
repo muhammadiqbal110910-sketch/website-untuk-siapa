@@ -9,29 +9,36 @@
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #ffd6e7, #fff);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
             color: #6b2145;
-            overflow-x: hidden;
+            text-align: center;
         }
 
         .container {
             width: 90%;
             max-width: 500px;
-            background: rgba(255,255,255,0.9);
-            padding: 30px 20px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
             border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            color: #e91e63;
+        }
+
+        h2 {
+            color: #d81b60;
         }
 
         .heart {
@@ -39,23 +46,26 @@
             animation: denyut 1.2s infinite;
         }
 
-        h1 {
-            margin: 15px 0;
-            color: #e91e63;
+        @keyframes denyut {
+            50% {
+                transform: scale(1.2);
+            }
         }
 
-        p {
-            line-height: 1.7;
-            margin-bottom: 20px;
+        .foto {
+            width: 100%;
+            border-radius: 20px;
+            margin-top: 10px;
         }
 
         button {
-            border: none;
             background: #e91e63;
             color: white;
-            padding: 13px 25px;
-            border-radius: 30px;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 25px;
             font-size: 16px;
+            margin: 5px;
             cursor: pointer;
         }
 
@@ -63,23 +73,15 @@
             background: #c2185b;
         }
 
-        .hidden {
+        #hasil {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .surprise {
             display: none;
-        }
-
-        #pesan {
             margin-top: 20px;
-            animation: muncul 1s ease;
-        }
-
-        @keyframes denyut {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
+            animation: muncul 1s;
         }
 
         @keyframes muncul {
@@ -94,19 +96,14 @@
             }
         }
 
-        .floating-heart {
+        .love {
             position: fixed;
-            bottom: -20px;
+            bottom: -30px;
+            animation: naik 5s linear;
             font-size: 25px;
-            animation: naik 5s linear forwards;
         }
 
         @keyframes naik {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-
             to {
                 transform: translateY(-100vh);
                 opacity: 0;
@@ -117,72 +114,189 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
+
+    <!-- PEMBUKAAN -->
+    <div class="card">
 
         <div class="heart">❤️</div>
 
         <h1>Untuk Kamu</h1>
 
         <p>
-            Ada sesuatu yang ingin aku sampaikan...
-            <br>
-            Jadi, coba tekan tombol di bawah ini.
+            Ada sesuatu yang ingin aku sampaikan
+            khusus buat kamu.
         </p>
 
-        <button onclick="bukaPesan()">
-            💌 Buka Pesanku
+        <p>
+            Terima kasih sudah hadir dalam hidupku. 💗
+        </p>
+
+    </div>
+
+
+    <!-- FOTO -->
+    <div class="card">
+
+        <h2>📸 About you</h2>
+
+        <img
+            src="foto/foto-kamu.jpg"
+            class="foto"
+            alt="Foto kamu">
+
+        <p>
+            you are the my favorite person in this time. ❤️
+        </p>
+
+    </div>
+
+
+    <!-- MUSIK -->
+    <div class="card">
+
+        <h2>🎵 Lagu Untuk Kamu</h2>
+
+        <p>
+            Putar lagu ini sambil membaca pesanku.
+        </p>
+
+        <audio controls loop style="width:100%;">
+            <source
+                src="backsound.com"
+                type="audio/mpeg">
+        </audio>
+
+    </div>
+
+
+    <!-- PESAN -->
+    <div class="card">
+
+        <h2>💌 Pesan Untukmu</h2>
+
+        <p>
+            Hai CHIBY. Happy Girlfriend Day, 
+            Sorry cuman ngasih web doang
+            tapi aku bakal ngasih kamu something 
+            tapi ga sekarang yahh.
+        </p>
+
+        <p>
+            I always pray to god about you, i wish 
+            we will together forever. And, i will 
+            tell you about something but i can't.
+        </p>
+
+        <p>
+            Semoga kamu bahagia selalu, dimana pun
+            kamu berada, walau tanpa aku.
+        </p>
+
+        <h2>❤️ I Love You ❤️</h2>
+
+    </div>
+
+
+    <!-- QUIZ -->
+    <div class="card">
+
+        <h2>❓ Quiz Tentang Kita</h2>
+
+        <p>
+            Menurut kamu, siapa yang paling sayang?
+        </p>
+
+        <button onclick="jawaban('Aku 😎')">
+            Aku 😎
         </button>
 
-        <div id="pesan" class="hidden">
+        <button onclick="jawaban('Kamu ❤️')">
+            Kamu ❤️
+        </button>
 
-            <h2>💗 Hai Kamu 💗</h2>
+        <div id="hasil"></div>
+
+    </div>
+
+
+    <!-- SURPRISE -->
+    <div class="card">
+
+        <h2>🎁 Ada Kejutan</h2>
+
+        <button onclick="kejutan()">
+            Buka Kejutan ❤️
+        </button>
+
+        <div id="surprise" class="surprise">
+
+            <h2>💗 SURPRISE! 💗</h2>
 
             <p>
-                Terima kasih sudah menjadi bagian dari hidupku.
-                Aku mungkin nggak selalu bisa mengungkapkan
-                semuanya secara langsung, tapi aku ingin kamu tahu
-                kalau kamu sangat berarti buat aku.
+                Kalau kamu sampai membaca ini,
+                berarti kamu sudah sampai di akhir.
             </p>
 
             <p>
-                Semoga kita selalu punya banyak cerita,
-                banyak tawa, dan banyak kenangan indah bersama. ❤️
+                Aku cuma mau bilang...
             </p>
 
-            <p>
-                <b>From: Aku 💕</b>
-            </p>
+            <h1>
+                Kamu sangat berarti buat aku ❤️
+            </h1>
 
         </div>
 
     </div>
 
-    <script>
-        function bukaPesan() {
-            document.getElementById("pesan").classList.remove("hidden");
+</div>
 
-            for (let i = 0; i < 15; i++) {
-                buatHati();
-            }
-        }
 
-        function buatHati() {
-            const hati = document.createElement("div");
+<script>
 
-            hati.innerHTML = "❤️";
-            hati.classList.add("floating-heart");
+function jawaban(jawab) {
 
-            hati.style.left = Math.random() * 100 + "vw";
-            hati.style.animationDuration =
-                (3 + Math.random() * 3) + "s";
+    document.getElementById("hasil").innerHTML =
+        "Jawaban kamu: " + jawab +
+        "<br><br>Yang penting kita sama-sama sayang ❤️";
 
-            document.body.appendChild(hati);
+    buatHati();
+}
 
-            setTimeout(() => {
-                hati.remove();
-            }, 6000);
-        }
-    </script>
+
+function kejutan() {
+
+    document.getElementById("surprise").style.display = "block";
+
+    for (let i = 0; i < 20; i++) {
+        buatHati();
+    }
+}
+
+
+function buatHati() {
+
+    const hati = document.createElement("div");
+
+    hati.innerHTML = "❤️";
+
+    hati.className = "love";
+
+    hati.style.left =
+        Math.random() * 100 + "vw";
+
+    hati.style.animationDuration =
+        (3 + Math.random() * 3) + "s";
+
+    document.body.appendChild(hati);
+
+    setTimeout(function() {
+        hati.remove();
+    }, 6000);
+}
+
+</script>
 
 </body>
 </html>
