@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Untuk Kamu ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd6e7, #fff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #6b2145;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255,255,255,0.9);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .heart {
+            font-size: 70px;
+            animation: denyut 1.2s infinite;
+        }
+
+        h1 {
+            margin: 15px 0;
+            color: #e91e63;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: none;
+            background: #e91e63;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c2185b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #pesan {
+            margin-top: 20px;
+            animation: muncul 1s ease;
+        }
+
+        @keyframes denyut {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 25px;
+            animation: naik 5s linear forwards;
+        }
+
+        @keyframes naik {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="heart">❤️</div>
+
+        <h1>Untuk Kamu</h1>
+
+        <p>
+            Ada sesuatu yang ingin aku sampaikan...
+            <br>
+            Jadi, coba tekan tombol di bawah ini.
+        </p>
+
+        <button onclick="bukaPesan()">
+            💌 Buka Pesanku
+        </button>
+
+        <div id="pesan" class="hidden">
+
+            <h2>💗 Hai Kamu 💗</h2>
+
+            <p>
+                Terima kasih sudah menjadi bagian dari hidupku.
+                Aku mungkin nggak selalu bisa mengungkapkan
+                semuanya secara langsung, tapi aku ingin kamu tahu
+                kalau kamu sangat berarti buat aku.
+            </p>
+
+            <p>
+                Semoga kita selalu punya banyak cerita,
+                banyak tawa, dan banyak kenangan indah bersama. ❤️
+            </p>
+
+            <p>
+                <b>From: Aku 💕</b>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+        function bukaPesan() {
+            document.getElementById("pesan").classList.remove("hidden");
+
+            for (let i = 0; i < 15; i++) {
+                buatHati();
+            }
+        }
+
+        function buatHati() {
+            const hati = document.createElement("div");
+
+            hati.innerHTML = "❤️";
+            hati.classList.add("floating-heart");
+
+            hati.style.left = Math.random() * 100 + "vw";
+            hati.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(hati);
+
+            setTimeout(() => {
+                hati.remove();
+            }, 6000);
+        }
+    </script>
+
+</body>
+</html>
